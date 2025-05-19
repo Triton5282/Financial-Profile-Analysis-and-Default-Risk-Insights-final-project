@@ -4,7 +4,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, classification_report
 import pandas as pd
 
-df = pd.read_csv("D:/CSE/project303/Dataset/LoanData_Raw_v1.0.csv")
+df = pd.read_csv("D:/CSE/Financial-Profile-Analysis-and-Default-Risk-Insights-final-project/Dataset/LoanData_Raw_v1.0.csv")
 print("before conversion:\n",df.info())
 
 df['default'] = pd.to_numeric(df['default'], errors='coerce').fillna(0).astype('int')
