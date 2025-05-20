@@ -3,6 +3,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score, classification_report
 import pandas as pd
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 df = pd.read_csv("D:/CSE/Financial-Profile-Analysis-and-Default-Risk-Insights-final-project/Dataset/LoanData_Raw_v1.0.csv")
 print("before conversion:\n",df.info())
@@ -53,9 +56,28 @@ y_pred_linear = linear_model.predict(X_test_scaled)
 print("LinearSVC Accuracy:", accuracy_score(y_test, y_pred_linear))
 print("\nClassification Report:\n", classification_report(y_test, y_pred_linear))
 
+# Confusion Matrix for LinearSVC
+cm_linear = confusion_matrix(y_test, y_pred_linear)
+plt.figure(figsize=(6, 4))
+sns.heatmap(cm_linear, annot=True, fmt='d', cmap='Blues')
+plt.title('Confusion Matrix - LinearSVC')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.show()
+
+
 # RBF SVC Model
 rbf_model = SVC(kernel='rbf')
 rbf_model.fit(X_train_scaled, y_train)
 y_pred_rbf = rbf_model.predict(X_test_scaled)
 print("RBF SVC Accuracy:", accuracy_score(y_test, y_pred_rbf))
 print("\nClassification Report:\n", classification_report(y_test, y_pred_rbf))
+
+# Confusion Matrix for RBF SVC
+cm_rbf = confusion_matrix(y_test, y_pred_rbf)
+plt.figure(figsize=(6, 4))
+sns.heatmap(cm_rbf, annot=True, fmt='d', cmap='Greens')
+plt.title('Confusion Matrix - RBF SVC')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.show()
