@@ -28,7 +28,7 @@ print(df[df.isnull().any(axis=1)])
 
 
 # Feature and target split
-X = df.iloc[:, 0:8]
+X = df.iloc[:,0:8]
 y = df.iloc[:, 8]
 
 # Train-test split
@@ -46,6 +46,12 @@ y_pred_linear = linear_model.predict(X_test_scaled)
 print("LinearSVC Accuracy:", accuracy_score(y_test, y_pred_linear))
 print("\nClassification Report:\n", classification_report(y_test, y_pred_linear))
 
+# LinearSVC Model
+linear_model = LinearSVC(penalty='l2')
+linear_model.fit(X_train_scaled, y_train)
+y_pred_linear = linear_model.predict(X_test_scaled)
+print("LinearSVC Accuracy:", accuracy_score(y_test, y_pred_linear))
+print("\nClassification Report:\n", classification_report(y_test, y_pred_linear))
 
 # RBF SVC Model
 rbf_model = SVC(kernel='rbf')
