@@ -49,6 +49,15 @@ y_pred_linear = linear_model.predict(X_test_scaled)
 print("LinearSVC Accuracy:", accuracy_score(y_test, y_pred_linear))
 print("\nClassification Report:\n", classification_report(y_test, y_pred_linear))
 
+# Confusion Matrix for LinearSVC
+cm_linear = confusion_matrix(y_test, y_pred_linear)
+plt.figure(figsize=(6, 4))
+sns.heatmap(cm_linear, annot=True, fmt='d', cmap='Blues')
+plt.title('Confusion Matrix - LinearSVC')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.show()
+
 # LinearSVC Model
 linear_model = LinearSVC(penalty='l2')
 linear_model.fit(X_train_scaled, y_train)
